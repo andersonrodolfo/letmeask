@@ -1,0 +1,12 @@
+{
+  "stylelint.configFile": "./.stylelintrc.js",
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+  ],
+  "cSpell.words": [
+    "Letmeask"
+  ],
+}
