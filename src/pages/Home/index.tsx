@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 import googleIconImg from '../../assets/images/google-icon.svg';
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
+import { useAuth } from '../../hooks/useAuth';
 import {
   Container,
   Aside,
@@ -15,6 +18,14 @@ import {
 } from './styles';
 
 export function Home() {
+  const navigate = useNavigate();
+  const { user, signInWithGoogle } = useAuth();
+
+  async function handleCreateRoom() {
+    if (!user) await signInWithGoogle();
+    navigate('/rooms/new');
+  }
+
   return (
     <Container>
       <Aside>
@@ -28,7 +39,7 @@ export function Home() {
       <Main>
         <MainContent>
           <Logo src={logoImg} alt="Letmeask" />
-          <ButtonCreateRoom>
+          <ButtonCreateRoom onClick={handleCreateRoom}>
             <img src={googleIconImg} alt="Logo do google" />
             Crie sua sala com o Google
           </ButtonCreateRoom>
