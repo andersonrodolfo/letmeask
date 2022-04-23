@@ -1,22 +1,50 @@
-import { Link } from 'react-router-dom';
+import { FormEvent, ChangeEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { getDatabase, ref, child, update, push } from 'firebase/database';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
-// import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import {
-  Container,
   Aside,
-  Main,
-  MainContent,
-  Logo,
+  ButtonSubmit,
+  Container,
   Form,
   Input,
-  ButtonSubmit,
+  Logo,
+  Main,
+  MainContent,
 } from '../Home/styles';
-import { CreateANewRoom, ExistingRoom } from './styles';
+import { CreateNewRoomTitle, ExistingRoom } from './styles';
 
 export function NewRoom() {
-  // const { user } = useAuth();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  const [newRoom, setNewRoom] = useState('');
+
+  async function handleCreateRoom(e: FormEvent) {
+    e.preventDefault();
+
+    if (newRoom.trim() === '') return;
+
+    const db = getDatabase();
+    const firebaseRoomKey = push(child(ref(db), 'rooms')).key;
+    await update(ref(db), {
+      [`/rooms/${firebaseRoomKey}`]: {
+        authorId: user?.id,
+        title: newRoom,
+      },
+    });
+
+    navigate(`/rooms/${firebaseRoomKey}`);
+  }
+
+  function handleChangeEvent(e: ChangeEvent<HTMLInputElement>) {
+    const { value } = e.target;
+    setNewRoom(value);
+  }
 
   return (
     <Container>
@@ -31,10 +59,17 @@ export function NewRoom() {
       <Main>
         <MainContent>
           <Logo src={logoImg} alt="Letmeask" />
-          <CreateANewRoom>Crie uma nova sala</CreateANewRoom>
-          <Form>
-            <Input type="text" placeholder="Nome da sala" />
-            <ButtonSubmit type="submit">Criar sala</ButtonSubmit>
+          <CreateNewRoomTitle>Crie uma nova sala</CreateNewRoomTitle>
+          <Form onSubmit={handleCreateRoom}>
+            <Input
+              type="text"
+              placeholder="Nome da sala"
+              onChange={handleChangeEvent}
+              value={newRoom}
+            />
+            <ButtonSubmit disabled={!newRoom} type="submit">
+              Criar sala
+            </ButtonSubmit>
           </Form>
           <ExistingRoom>
             Quer entrar em uma sala existente? <Link to="/">clique aqui</Link>

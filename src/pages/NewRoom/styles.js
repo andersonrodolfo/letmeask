@@ -1,20 +1,22 @@
 import styled from 'styled-components';
 
-import { COLORS } from '../../styles/theme';
-const { gray2, pink } = COLORS;
-
-export const CreateANewRoom = styled.h2`
-  font-size: 24px;
+export const CreateNewRoomTitle = styled.h2`
   margin: 64px 0 24px;
+  font-size: 24px;
   font-family: 'Poppings', sans-serif;
 `;
 
 export const ExistingRoom = styled.p`
-  font-size: 14px;
-  color: ${gray2};
   margin-top: 16px;
+  color: ${({ theme: { $color9 } }) => $color9};
+  font-size: 14px;
 
   a {
-    color: ${pink};
+    color: ${({ theme: { $color2 } }) => $color2};
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: ${({ theme: { $color1 } }) => $color1};
+    }
   }
 `;

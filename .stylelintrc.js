@@ -15,6 +15,7 @@ module.exports = {
   ],
   plugins: ['stylelint-order'],
   rules: {
+    'function-no-unknown': null,
     'string-quotes': 'single',
     'length-zero-no-unit': true,
     'no-empty-source': null,

@@ -1,8 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-import { COLORS } from './theme';
-const { lightGray, darkGray } = COLORS;
-
 export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -11,8 +8,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${lightGray};
-    color: ${darkGray};
+    background: ${({ theme: { $color6 } }) => $color6};
+    color: ${({ theme: { $color10 } }) => $color10};
   }
 
   body,

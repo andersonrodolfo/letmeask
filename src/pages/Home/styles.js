@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 import { Button } from '../../components/Button';
-import { COLORS } from '../../styles/theme';
-const { mainColor, lightGray, gray } = COLORS;
 
 export const Container = styled.div`
   display: flex;
@@ -16,8 +14,8 @@ export const Aside = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 120px 80px;
-  background: ${mainColor};
-  color: #fff;
+  background: ${({ theme: { $color1 } }) => $color1};
+  color: ${({ theme: { $color4 } }) => $color4};
 
   img {
     max-width: 320px;
@@ -31,7 +29,7 @@ export const Aside = styled.div`
 
   p {
     margin-top: 16px;
-    color: ${lightGray};
+    color: ${({ theme: { $color6 } }) => $color6};
     font-size: 24px;
     line-height: 32px;
   }
@@ -59,14 +57,15 @@ export const Logo = styled.img`
 `;
 
 export const ButtonCreateRoom = styled(Button)`
-  background: #ea4335;
+  background: ${({ theme: { $color3 } }) => $color3};
+  margin-top: 64px;
 `;
 
 export const Separator = styled.p`
   display: flex;
   align-items: center;
   margin: 32px 0;
-  color: ${gray};
+  color: ${({ theme: { $color8 } }) => $color8};
   font-size: 14px;
 
   &::before,
@@ -74,7 +73,7 @@ export const Separator = styled.p`
     content: '';
     flex: 1;
     height: 1px;
-    background: ${gray};
+    background: ${({ theme: { $color8 } }) => $color8};
   }
 
   &::before {
@@ -100,9 +99,9 @@ export const Form = styled.form`
 export const Input = styled.input`
   height: 50px;
   padding: 0 16px;
-  border: 1px solid ${gray};
+  border: 1px solid ${({ theme: { $color8 } }) => $color8};
   border-radius: 8px;
-  background: #fff;
+  background: ${({ theme: { $color4 } }) => $color4};
 `;
 
 export const ButtonSubmit = styled(Button)``;
