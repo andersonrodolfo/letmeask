@@ -1,27 +1,15 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import {
-  child,
-  getDatabase,
-  push,
-  ref,
-  update,
-  onValue,
-} from 'firebase/database';
+import { child, getDatabase, push, ref, update } from 'firebase/database';
 
-import logoImg from '../../assets/images/logo.svg';
-import { RoomCode } from '../../components/RoomCode';
+import { RoomHeader } from '../../components/RoomHeader';
+import { RoomTitle } from '../../components/RoomTitle';
 import { useAuth } from '../../hooks/useAuth';
+import { useRoom } from '../../hooks/useRoom';
 import {
   Container,
-  Header,
-  Content,
-  Logo,
   Main,
-  RoomTitle,
-  Title,
-  TotalQuestions,
   Form,
   TextArea,
   Footer,
@@ -31,67 +19,18 @@ import {
   Info,
   Login,
   SendQuestionButton,
+  Questions,
 } from './styles';
-
-type QuestionObject = {
-  author: {
-    name: string;
-    avatar: string;
-  };
-  content: string;
-  isAnswered: boolean;
-  isHighlighted: boolean;
-};
-
-type FirebaseQuestions = Record<string, QuestionObject>;
-
-type Question = {
-  id: string;
-} & QuestionObject;
 
 type RoomParams = {
   id: string;
 };
 
 export function Room() {
-  const navigate = useNavigate();
   const { user } = useAuth();
-  const { id: roomId } = useParams<RoomParams>();
+  const { id: roomId = '' } = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
-  const [questions, setQuestions] = useState<Question[]>([]);
-  const [title, setTitle] = useState('');
-  const isMounted = useRef(false);
-
-  useEffect(() => {
-    async function getRoomQuestions() {
-      const db = getDatabase();
-      const roomRef = ref(db, `rooms/${roomId}`);
-
-      onValue(roomRef, (room) => {
-        if (!room.exists()) return;
-        const databaseRoom = room.val();
-        const firebaseQuestions: FirebaseQuestions =
-          databaseRoom.questions || [];
-        const parsedQuestions = Object.entries(firebaseQuestions).map(
-          ([key, value]) => {
-            return {
-              id: key,
-              content: value.content,
-              author: value.author,
-              isAnswered: value.isAnswered,
-              isHighlighted: value.isHighlighted,
-            };
-          }
-        );
-
-        setTitle(databaseRoom.title);
-        setQuestions(parsedQuestions);
-      });
-    }
-
-    if (isMounted.current) getRoomQuestions();
-    else isMounted.current = true;
-  }, [roomId]);
+  const { title, questions } = useRoom(roomId);
 
   function handleChangeEvent(e: ChangeEvent<HTMLTextAreaElement>) {
     const { value } = e.target;
@@ -113,35 +52,19 @@ export function Room() {
 
     const db = getDatabase();
     const questionsPath = `/rooms/${roomId}/questions`;
-    const firebaseQuestionKey = push(child(ref(db), questionsPath)).key;
+    const { key } = push(child(ref(db), questionsPath));
     await update(ref(db), {
-      [`${questionsPath}/${firebaseQuestionKey}`]: question,
+      [`${questionsPath}/${key}`]: question,
     });
 
     setNewQuestion('');
   }
 
-  function goHome() {
-    navigate('/');
-  }
-
   return (
     <Container>
-      <Header>
-        <Content>
-          <Logo onClick={goHome} src={logoImg} alt="Letmeask" />
-          {roomId && <RoomCode code={roomId} />}
-        </Content>
-      </Header>
+      <RoomHeader roomId={roomId} />
       <Main>
-        <RoomTitle>
-          {title && <Title>Sala {title}</Title>}
-          {!!questions.length && (
-            <TotalQuestions>{`${questions.length} pergunta${
-              questions.length > 1 ? 's' : ''
-            }`}</TotalQuestions>
-          )}
-        </RoomTitle>
+        <RoomTitle title={title} questions={questions} />
         <Form onSubmit={handleSendQuestion}>
           <TextArea
             placeholder="O que você quer perguntar?"
@@ -165,6 +88,7 @@ export function Room() {
             </SendQuestionButton>
           </Footer>
         </Form>
+        <Questions questions={questions} />
       </Main>
     </Container>
   );

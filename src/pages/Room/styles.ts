@@ -1,52 +1,13 @@
 import styled from 'styled-components';
 
 import { Button } from '../../components/Button';
+import { Questions as QuestionsComponent } from '../../components/Questions';
 
 export const Container = styled.div``;
-
-export const Header = styled.header`
-  padding: 24px;
-  border-bottom: 1px solid ${({ theme: { $color7 } }) => $color7};
-`;
-
-export const Content = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1120px;
-  margin: 0 auto;
-`;
-
-export const Logo = styled.img`
-  max-height: 45px;
-  cursor: pointer;
-`;
 
 export const Main = styled.main`
   max-width: 800px;
   margin: 0 auto;
-`;
-
-export const RoomTitle = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 32px 0 24px;
-`;
-
-export const Title = styled.h1`
-  color: ${({ theme: { $color10 } }) => $color10};
-  font-size: 24px;
-  font-family: 'Poppings', sans-serif;
-`;
-
-export const TotalQuestions = styled.span`
-  margin-left: 16px;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  background: ${({ theme: { $color2 } }) => $color2};
-  color: ${({ theme: { $color4 } }) => $color4};
-  font-weight: 500;
-  font-size: 14px;
 `;
 
 export const Form = styled.form``;
@@ -109,3 +70,7 @@ export const Login = styled.button`
 `;
 
 export const SendQuestionButton = styled(Button)``;
+
+export const Questions = styled(QuestionsComponent)`
+  margin: 32px 0;
+`;

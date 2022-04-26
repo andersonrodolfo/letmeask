@@ -4,21 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { getDatabase, ref, child, get } from 'firebase/database';
 
 import googleIconImg from '../../assets/images/google-icon.svg';
-import illustrationImg from '../../assets/images/illustration.svg';
-import logoImg from '../../assets/images/logo.svg';
+import { PageColumns } from '../../components/PageColumns';
+import { ButtonSubmit, Form, Input } from '../../components/PageColumns/styles';
 import { useAuth } from '../../hooks/useAuth';
-import {
-  Container,
-  Aside,
-  Main,
-  MainContent,
-  Logo,
-  ButtonCreateRoom,
-  Separator,
-  Form,
-  Input,
-  ButtonSubmit,
-} from './styles';
+import { ButtonCreateRoom, Separator } from './styles';
 
 export function Home() {
   const navigate = useNavigate();
@@ -48,36 +37,23 @@ export function Home() {
   }
 
   return (
-    <Container>
-      <Aside>
-        <img
-          src={illustrationImg}
-          alt="Ilustração simbolizando perguntas e respostas"
+    <PageColumns>
+      <ButtonCreateRoom onClick={handleCreateRoom}>
+        <img src={googleIconImg} alt="Logo do google" />
+        Crie sua sala com o Google
+      </ButtonCreateRoom>
+      <Separator>ou entre em uma sala</Separator>
+      <Form onSubmit={handleJoinRoom}>
+        <Input
+          type="text"
+          placeholder="Digite o código da sala"
+          onChange={handleChangeEvent}
+          value={roomCode}
         />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas da sua audiência em tempo-real</p>
-      </Aside>
-      <Main>
-        <MainContent>
-          <Logo src={logoImg} alt="Letmeask" />
-          <ButtonCreateRoom onClick={handleCreateRoom}>
-            <img src={googleIconImg} alt="Logo do google" />
-            Crie sua sala com o Google
-          </ButtonCreateRoom>
-          <Separator>ou entre em uma sala</Separator>
-          <Form onSubmit={handleJoinRoom}>
-            <Input
-              type="text"
-              placeholder="Digite o código da sala"
-              onChange={handleChangeEvent}
-              value={roomCode}
-            />
-            <ButtonSubmit disabled={!roomCode} type="submit">
-              Entrar na sala
-            </ButtonSubmit>
-          </Form>
-        </MainContent>
-      </Main>
-    </Container>
+        <ButtonSubmit disabled={!roomCode} type="submit">
+          Entrar na sala
+        </ButtonSubmit>
+      </Form>
+    </PageColumns>
   );
 }
