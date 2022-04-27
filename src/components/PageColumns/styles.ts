@@ -15,7 +15,7 @@ export const Aside = styled.div`
   justify-content: center;
   padding: 120px 80px;
   background: ${({ theme: { $color1 } }) => $color1};
-  color: ${({ theme: { $color4 } }) => $color4};
+  color: ${({ theme: { $color6 } }) => $color6};
 `;
 
 export const Illustration = styled.img`
@@ -30,7 +30,6 @@ export const Highlight = styled.h1`
 
 export const Info = styled.p`
   margin-top: 16px;
-  color: ${({ theme: { $color6 } }) => $color6};
   font-size: 24px;
   line-height: 32px;
 `;
@@ -41,6 +40,7 @@ export const Main = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 32px;
+  background: ${({ theme: { $color4 } }) => $color4};
 `;
 
 export const MainContent = styled.div`

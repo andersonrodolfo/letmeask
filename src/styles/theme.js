@@ -13,3 +13,17 @@ export const theme = Object.freeze({
 });
 
 export const defaultTheme = Object.freeze({ ...theme });
+
+export const darkMode = Object.freeze({
+  $color1: '#482b9e',
+  $color2: '#e559f9',
+  $color3: '#ea4335',
+  $color4: '#191b1c',
+  $color5: '#fefefe',
+  $color6: '#f8f8f8',
+  $color7: '#e2e2e2',
+  $color8: '#a8a8b3',
+  $color9: '#737380',
+  $color10: '#29292e',
+  $color11: '#000',
+});
