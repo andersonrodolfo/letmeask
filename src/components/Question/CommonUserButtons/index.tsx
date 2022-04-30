@@ -39,7 +39,7 @@ export function CommonUserButtons({
     });
   }
 
-  return (
+  return !question.isAnswered ? (
     <Like
       type="button"
       aria-label="Marcar como gostei"
@@ -70,5 +70,5 @@ export function CommonUserButtons({
         />
       </svg>
     </Like>
-  );
+  ) : null;
 }

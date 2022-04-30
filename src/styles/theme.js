@@ -9,7 +9,9 @@ export const theme = Object.freeze({
   $color8: '#a8a8b3',
   $color9: '#737380',
   $color10: '#29292e',
-  $color11: '#000',
+  $color11: '#f4f0ff',
+  $color12: '#dbdcdd',
+  $color13: '#000',
 });
 
 export const defaultTheme = Object.freeze({ ...theme });
@@ -25,5 +27,7 @@ export const darkMode = Object.freeze({
   $color8: '#a8a8b3',
   $color9: '#737380',
   $color10: '#29292e',
-  $color11: '#000',
+  $color11: '#f4f0ff',
+  $color12: '#dbdcdd',
+  $color13: '#000',
 });

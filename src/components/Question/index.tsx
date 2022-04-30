@@ -30,13 +30,16 @@ export function Question({
     content,
     author: { avatar, name },
   } = question;
+  const { isAnswered, isHighlighted } = question;
   return (
-    <Container {...rest}>
+    <Container isAnswered={isAnswered} isHighlighted={isHighlighted} {...rest}>
       <Content>{content}</Content>
       <Footer>
         <Info>
           <Avatar src={avatar} alt={name} />
-          <Name>{name}</Name>
+          <Name isAnswered={isAnswered} isHighlighted={isHighlighted}>
+            {name}
+          </Name>
         </Info>
         <Buttons>
           {isAdmin ? (

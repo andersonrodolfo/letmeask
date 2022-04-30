@@ -19,6 +19,7 @@ export function AdminRoom() {
       <RoomHeader isAdmin roomId={roomId} />
       <Main>
         <RoomTitle title={title} questions={questions} />
+
         <Questions>
           {questions.map((question) => (
             <Question
