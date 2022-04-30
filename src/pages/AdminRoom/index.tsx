@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 
+import { Question } from '../../components/Question';
 import { RoomHeader } from '../../components/RoomHeader';
 import { RoomTitle } from '../../components/RoomTitle';
 import { useRoom } from '../../hooks/useRoom';
@@ -15,10 +16,19 @@ export function AdminRoom() {
 
   return (
     <Container>
-      <RoomHeader roomId={roomId} />
+      <RoomHeader isAdmin roomId={roomId} />
       <Main>
         <RoomTitle title={title} questions={questions} />
-        <Questions questions={questions} />
+        <Questions>
+          {questions.map((question) => (
+            <Question
+              key={question.id}
+              isAdmin
+              roomId={roomId}
+              question={question}
+            />
+          ))}
+        </Questions>
       </Main>
     </Container>
   );

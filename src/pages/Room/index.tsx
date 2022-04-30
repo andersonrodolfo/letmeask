@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { child, getDatabase, push, ref, update } from 'firebase/database';
 
+import { Question } from '../../components/Question';
 import { RoomHeader } from '../../components/RoomHeader';
 import { RoomTitle } from '../../components/RoomTitle';
 import { useAuth } from '../../hooks/useAuth';
@@ -88,7 +89,17 @@ export function Room() {
             </SendQuestionButton>
           </Footer>
         </Form>
-        <Questions questions={questions} />
+
+        <Questions>
+          {questions.map((question) => (
+            <Question
+              key={question.id}
+              user={user}
+              roomId={roomId}
+              question={question}
+            />
+          ))}
+        </Questions>
       </Main>
     </Container>
   );

@@ -27,6 +27,7 @@ export function Home() {
     const roomRef = await get(child(dbRef, `rooms/${roomCode}`));
 
     if (!roomRef.exists()) return alert('Room does not exists');
+    if (roomRef.val().closedAt) return alert('Room already closed');
 
     navigate(`/rooms/${roomCode}`);
   }

@@ -1,9 +1,9 @@
-import { QuestionObject } from '../../hooks/useRoom';
+import { QuestionType } from '../../hooks/useRoom';
 import { Container, Title, TotalQuestions } from './styles';
 
 type RoomTitleProps = {
   title?: string;
-  questions: QuestionObject[];
+  questions: QuestionType[];
 };
 
 export function RoomTitle({ title = '', questions = [] }: RoomTitleProps) {

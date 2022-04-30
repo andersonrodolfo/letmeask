@@ -9,7 +9,7 @@ import {
 
 import { firebaseApp } from '../services/firebase';
 
-type User = {
+export type User = {
   id: string;
   name: string;
   avatar: string;

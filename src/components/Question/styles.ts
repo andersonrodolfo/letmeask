@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.ul``;
-
-export const Item = styled.li`
+export const Container = styled.div`
   padding: 24px;
   border-radius: 8px;
   background: ${({ theme: { $color5 } }) => $color5};
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   list-style: none;
 
-  & + li {
+  & + div {
     margin-top: 8px;
   }
 `;
@@ -42,4 +40,12 @@ export const Name = styled.p`
   font-size: 14px;
 `;
 
-export const Buttons = styled.div``;
+export const Buttons = styled.div`
+  display: flex;
+
+  button {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+`;

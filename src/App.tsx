@@ -8,11 +8,11 @@ import { Home } from './pages/Home';
 import { NewRoom } from './pages/NewRoom';
 import { Room } from './pages/Room';
 import { GlobalStyle } from './styles/global';
-import { darkMode } from './styles/theme';
+import { defaultTheme } from './styles/theme';
 
 function App() {
   return (
-    <ThemeProvider theme={darkMode}>
+    <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
       <Router>
         <AuthContextProvider>

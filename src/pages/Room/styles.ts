@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { Button } from '../../components/Button';
-import { Questions as QuestionsComponent } from '../../components/Questions';
 
 export const Container = styled.div``;
 
@@ -71,6 +70,6 @@ export const Login = styled.button`
 
 export const SendQuestionButton = styled(Button)``;
 
-export const Questions = styled(QuestionsComponent)`
+export const Questions = styled.div`
   margin: 32px 0;
 `;

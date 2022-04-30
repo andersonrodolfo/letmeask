@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Questions as QuestionsComponent } from '../../components/Questions';
-
 export const Container = styled.div``;
 
 export const Main = styled.main`
@@ -9,6 +7,6 @@ export const Main = styled.main`
   margin: 0 auto;
 `;
 
-export const Questions = styled(QuestionsComponent)`
+export const Questions = styled.div`
   margin: 32px 0;
 `;
