@@ -4,14 +4,18 @@ import { Button } from '../../components/Button';
 
 export const ButtonCreateRoom = styled(Button)`
   margin-top: 64px;
-  background: ${({ theme: { $color3 } }) => $color3};
+  background: ${({ theme }) => theme.googleButtonBackground};
+
+  &:not(:disabled):hover {
+    background: ${({ theme }) => theme.googleButtonBackgroundHover};
+  }
 `;
 
 export const Separator = styled.p`
   display: flex;
   align-items: center;
   margin: 32px 0;
-  color: ${({ theme: { $color8 } }) => $color8};
+  color: ${({ theme }) => theme.separator};
   font-size: 14px;
 
   &::before,
@@ -19,7 +23,7 @@ export const Separator = styled.p`
     content: '';
     flex: 1;
     height: 1px;
-    background: ${({ theme: { $color8 } }) => $color8};
+    background: ${({ theme }) => theme.separator};
   }
 
   &::before {

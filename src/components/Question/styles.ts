@@ -16,16 +16,16 @@ function handleStyles({
 }: Themes & ContainerProps) {
   if (isAnswered)
     return {
-      background: `${theme.$color12}`,
-      border: `1px solid ${theme.$color12}`,
+      background: `${theme.isQuestionAnswered}`,
+      border: `1px solid ${theme.isQuestionAnswered}`,
     };
   if (isHighlighted && !isAnswered)
     return {
-      background: `${theme.$color11}`,
-      border: `1px solid ${theme.$color1}`,
+      background: `${theme.isQuestionHighlighted}`,
+      border: `1px solid ${theme.primaryColor}`,
     };
   return {
-    background: `${theme.$color5}`,
+    background: `${theme.defaultQuestionBackground}`,
   };
 }
 
@@ -38,7 +38,7 @@ export const Container = styled.div<ContainerProps>`
     })}
   padding: 24px;
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   list-style: none;
 
   & + div {
@@ -47,7 +47,7 @@ export const Container = styled.div<ContainerProps>`
 `;
 
 export const Content = styled.p`
-  color: ${({ theme: { $color10 } }) => $color10};
+  color: ${({ theme }) => theme.defaultQuestionFontColor};
 `;
 
 export const Footer = styled.footer`
@@ -70,17 +70,16 @@ export const Avatar = styled.img`
 
 export const Name = styled.p<ContainerProps>`
   margin-left: 8px;
-  color: ${({ theme: { $color9, $color10 }, isHighlighted, isAnswered }) => {
-    if (isAnswered) return $color9;
-    if (isHighlighted && !isAnswered) return $color10;
-    return $color9;
+  color: ${({ theme, isHighlighted, isAnswered }) => {
+    if (isHighlighted && !isAnswered) return theme.highlightFontColor;
+    return theme.defaultFontColor;
   }};
   font-size: 14px;
 `;
 
 export const Buttons = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 12px;
 
   button {
     border: 0;

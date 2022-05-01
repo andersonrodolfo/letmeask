@@ -1,33 +1,52 @@
 import styled from 'styled-components';
 
 type ContainerProps = {
-  isOutlined?: boolean;
   theme: Record<string, unknown>;
+  isOutlined?: boolean;
+  small?: boolean;
 };
 
 export const Container = styled.button<ContainerProps>`
-  ${({ theme: { $color1, $color4 }, isOutlined }) =>
+  ${({
+    theme: {
+      primaryColor,
+      darkPrimaryColor,
+      secondaryColor,
+      buttonOutline,
+      buttonFontColor,
+    },
+    isOutlined,
+  }) =>
     isOutlined
       ? `
-      background: ${$color4};
-      color: ${$color1};
-      border: 1px solid ${$color1};
+      background: ${buttonOutline};
+      color: ${primaryColor};
+      border: 1px solid ${primaryColor};
+
+      &:not(:disabled):hover {
+        color: ${secondaryColor};
+        border: 1px solid ${darkPrimaryColor};
+        box-shadow: inset 0 0 3px ${darkPrimaryColor};
+      }
     `
       : `
-      background: ${$color1};
-      color: ${$color4};
+      background: ${primaryColor};
+      color: ${buttonFontColor};
       border: 0;
+
+      &:not(:disabled):hover {
+        background: ${darkPrimaryColor};
+      }
     `}
 
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  height: ${({ small }) => (small ? '40px' : '50px')};
   padding: 0 32px;
   border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
-  transition: filter 0.2s ease-in-out, opacity 0.2s ease-in-out;
   will-change: transform;
 
   img {
@@ -37,9 +56,5 @@ export const Container = styled.button<ContainerProps>`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-  }
-
-  &:not(:disabled):hover {
-    filter: brightness(0.9);
   }
 `;

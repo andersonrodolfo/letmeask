@@ -29,7 +29,7 @@ export function Home() {
     if (!roomRef.exists()) return alert('Room does not exists');
     if (roomRef.val().closedAt) return alert('Room already closed');
 
-    navigate(`/rooms/${roomCode}`);
+    navigate(`admin/rooms/${roomCode}`);
   }
 
   function handleChangeEvent(e: ChangeEvent<HTMLInputElement>) {

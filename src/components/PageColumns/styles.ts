@@ -14,8 +14,8 @@ export const Aside = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 120px 80px;
-  background: ${({ theme: { $color1 } }) => $color1};
-  color: ${({ theme: { $color6 } }) => $color6};
+  background: ${({ theme }) => theme.asideColumnBackground};
+  color: ${({ theme }) => theme.asideColumnFontColor};
 `;
 
 export const Illustration = styled.img`
@@ -40,7 +40,7 @@ export const Main = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 32px;
-  background: ${({ theme: { $color4 } }) => $color4};
+  background: ${({ theme }) => theme.mainColumnBackground};
 `;
 
 export const MainContent = styled.div`
@@ -52,7 +52,7 @@ export const MainContent = styled.div`
   text-align: center;
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.img.attrs((props) => ({ src: props.theme.logo }))`
   align-self: center;
 `;
 
@@ -70,9 +70,7 @@ export const Form = styled.form`
 export const Input = styled.input`
   height: 50px;
   padding: 0 16px;
-  border: 1px solid ${({ theme: { $color8 } }) => $color8};
   border-radius: 8px;
-  background: ${({ theme: { $color4 } }) => $color4};
 `;
 
 export const ButtonSubmit = styled(Button)``;

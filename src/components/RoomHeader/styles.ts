@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { Button } from '../Button';
+import { Button as ButtonComponent } from '../Button';
 
 export const Header = styled.header`
   padding: 24px;
-  border-bottom: 1px solid ${({ theme: { $color7 } }) => $color7};
+  border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
 `;
 
 export const Content = styled.div`
@@ -15,7 +15,7 @@ export const Content = styled.div`
   margin: 0 auto;
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.img.attrs((props) => ({ src: props.theme.logo }))`
   max-height: 45px;
   cursor: pointer;
 `;
@@ -25,6 +25,4 @@ export const Wrapper = styled.div`
   gap: 16px;
 `;
 
-export const CloseRoom = styled(Button)`
-  height: 40px;
-`;
+export const Button = styled(ButtonComponent)``;

@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
 import illustrationImg from '../../assets/images/illustration.svg';
-import logoImg from '../../assets/images/logo.svg';
 import {
   Container,
   Aside,
@@ -30,7 +29,7 @@ export function PageColumns({ children }: ContentProps) {
       </Aside>
       <Main>
         <MainContent>
-          <Logo src={logoImg} alt="Letmeask" />
+          <Logo alt="Letmeask" />
           {children}
         </MainContent>
       </Main>

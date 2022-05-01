@@ -11,7 +11,7 @@ export function RoomCode({ code }: RoomCodeProps) {
   }
 
   return (
-    <Container onClick={copyRoomCodeToClipboard}>
+    <Container type="button" onClick={copyRoomCodeToClipboard}>
       <ImageWrapper>
         <Image src={copyImg} alt="Copy room code" />
       </ImageWrapper>

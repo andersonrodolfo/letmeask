@@ -1,28 +1,38 @@
 import styled from 'styled-components';
 
-export const Container = styled.button`
-  display: flex;
-  overflow: hidden;
-  height: 40px;
-  border: 1px solid ${({ theme: { $color1 } }) => $color1};
-  border-radius: 8px;
-  background: ${({ theme: { $color4 } }) => $color4};
-  cursor: pointer;
-  transition: filter 0.2s ease-in-out;
-  will-change: transform;
-
-  &:hover {
-    filter: brightness(0.92);
-  }
-`;
-
 export const ImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   padding: 0 12px;
-  background-color: ${({ theme: { $color1 } }) => $color1};
+  background-color: ${({ theme }) => theme.primaryColor};
+`;
+
+export const Code = styled.span`
+  color: ${({ theme }) => theme.headerCodeColor};
+`;
+
+export const Container = styled.button`
+  display: flex;
+  overflow: hidden;
+  height: 40px;
+  border: 1px solid ${({ theme }) => theme.primaryColor};
+  border-radius: 8px;
+  background: ${({ theme }) => theme.defaultBackground};
+  cursor: pointer;
+  will-change: transform;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.darkPrimaryColor};
+    box-shadow: inset 0 0 3px ${({ theme }) => theme.darkPrimaryColor};
+    ${ImageWrapper} {
+      background-color: ${({ theme }) => theme.darkPrimaryColor};
+    }
+    ${Code} {
+      color: ${({ theme }) => theme.headerCodeColorHover};
+    }
+  }
 `;
 
 export const Image = styled.img``;
@@ -37,8 +47,5 @@ export const Info = styled.p`
   font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
-
-export const Code = styled.span`
-  color: ${({ theme: { $color1 } }) => $color1};
+  color: ${({ theme }) => theme.defaultFontColor};
 `;

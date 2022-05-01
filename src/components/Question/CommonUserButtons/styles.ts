@@ -8,15 +8,23 @@ export const Like = styled.button<LikeProps>`
   display: flex;
   gap: 8px;
   align-items: flex-end;
-  color: ${({ liked, theme: { $color9, $color1 } }) =>
-    liked ? $color1 : $color9};
-  transition: filter 0.2s ease-in-out;
+  color: ${({ liked, theme }) =>
+    liked ? theme.likeButtonFontColor : theme.defaultFontColor};
 
-  svg path {
-    stroke: ${({ liked, theme: { $color1 } }) => liked && $color1};
+  svg {
+    path {
+      fill: ${({ theme }) => theme.svgFillColor};
+      stroke: ${({ liked, theme }) =>
+        !liked ? theme.svgStrokeColor : theme.svgStrokeColorHover};
+    }
   }
 
   &:hover {
-    filter: brightness(0.7);
+    color: ${({ theme }) => theme.likeButtonFontColorHover};
+
+    svg path {
+      fill: ${({ theme }) => theme.svgFillColorHover};
+      stroke: ${({ theme }) => theme.svgStrokeColorHover};
+    }
   }
 `;

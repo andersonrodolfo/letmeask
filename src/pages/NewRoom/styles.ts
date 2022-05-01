@@ -2,21 +2,21 @@ import styled from 'styled-components';
 
 export const CreateNewRoomTitle = styled.h2`
   margin: 64px 0 24px;
+  color: ${({ theme }) => theme.highlightFontColor};
   font-size: 24px;
   font-family: 'Poppings', sans-serif;
 `;
 
 export const ExistingRoom = styled.p`
   margin-top: 16px;
-  color: ${({ theme: { $color9 } }) => $color9};
+  color: ${({ theme }) => theme.defaultFontColor};
   font-size: 14px;
 
   a {
-    color: ${({ theme: { $color2 } }) => $color2};
-    transition: color 0.2s ease-in-out;
+    color: ${({ theme }) => theme.linkColor};
 
     &:hover {
-      color: ${({ theme: { $color1 } }) => $color1};
+      color: ${({ theme }) => theme.linkColorHover};
     }
   }
 `;
